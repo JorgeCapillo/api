@@ -10,7 +10,6 @@ def usuarios(request):
     try:
         cookie = request.COOKIES['sessionid']
         login = {"id":request.session['user_id'],"login":request.session['login']}
-        
     except:
         login = False
     usuarios = Usuario.objects.all().values()
@@ -19,12 +18,12 @@ def usuarios(request):
 
 def home(request):
     try:
-        if (request.COOKIES['sessionid']):
-            if (request.session['login'] == True):
-                user = Usuario.objects.get(i_d=request.session['user_id'])
-                return render_to_response('login.html',{"user":user})
-            else:
+        if(request.COOKIES['sessionid']):
+            login = request.session['login']
+            if(login == False):
                 return render_to_response('home.html')
+            else:
+                user = Usuario.objects.filter(i_d=request.session["user_id"]).values()
+                return render_to_response('login.html',{"user":user[0]})
     except:
         return render_to_response('home.html')
-    

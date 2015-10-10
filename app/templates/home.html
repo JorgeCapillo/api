@@ -12,6 +12,8 @@
 	<script type="text/javascript" src="{% static 'app/js/app.js'%}"></script>
 	<script type="text/javascript" src="{% static 'app/js/controllers/tweetsSliderController.js'%}"></script>
 	<script type="text/javascript" src="{% static 'app/js/controllers/registroController.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/js/controllers/loginController.js'%}"></script>
+
 
 </head>
 <body ng-app="signIn">
@@ -40,13 +42,13 @@
 			<p>Conéctate con tus amigos y otras personas fascinantes. Obtén actualizaciones instantáneas de las cosas que te interesan. Mira los eventos que se están desarrollando, en tiempo real, desde todos los ángulos.</p>
 		</div>
 		<div class="conForms">
-			<form>
+			<form ng-controller="loginController">
 			    <div class="form-group">
-			    	<input type="text" class="form-control" placeholder="Correo"/>
+			    	<input type="text" class="form-control" placeholder="Correo" ng-model="email"/>
 			    </div>
 			    <div class="form-group">
-			    	<input type="password" class="span6 form-control width-50 inline-block" placeholder="Contraseña"/>
-			    	<button type="submit" class="span6 form-control width-50 inline-block">Iniciar sesión</button>
+			    	<input type="password" class="span6 form-control width-50 inline-block" placeholder="Contraseña" ng-model="password"/>
+			    	<button type="submit" class="span6 form-control width-50 inline-block" ng-click="login()">Iniciar sesión</button>
 			    </div>
 			    <div class="form-group recordar-olvidado">
 			    	<label class="label remember">

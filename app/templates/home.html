@@ -1,0 +1,102 @@
+<html>
+<head>
+	<title>Bienvenido a Twitter - Inicia sesión o regístrate</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://abs.twimg.com/a/1443989803/css/t1/twitter_more_1.bundle.css">
+	<link rel="stylesheet" href="https://abs.twimg.com/a/1443989803/css/t1/twitter_core.bundle.css">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app/css/main.css'%}">
+	<script type="text/javascript" src="{% static 'app/js/app.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/js/controllers/tweetsSliderController.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/js/controllers/registroController.js'%}"></script>
+
+</head>
+<body ng-app="signIn">
+	<header>
+		<nav>
+			<ul>
+				<li>
+					<a href="#">
+						<span class="Icon Icon--bird Icon--large"></span>
+						<span class="menu">Inicio</span>
+						<span class="linea"></span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu">Sobre nosotros</span>
+						<span class="linea"></span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="conInfo">
+			<h1>Bienvenido a Twitter</h1>
+			<p>Conéctate con tus amigos y otras personas fascinantes. Obtén actualizaciones instantáneas de las cosas que te interesan. Mira los eventos que se están desarrollando, en tiempo real, desde todos los ángulos.</p>
+		</div>
+		<div class="conForms">
+			<form>
+			    <div class="form-group">
+			    	<input type="text" class="form-control" placeholder="Correo"/>
+			    </div>
+			    <div class="form-group">
+			    	<input type="password" class="span6 form-control width-50 inline-block" placeholder="Contraseña"/>
+			    	<button type="submit" class="span6 form-control width-50 inline-block">Iniciar sesión</button>
+			    </div>
+			    <div class="form-group recordar-olvidado">
+			    	<label class="label remember">
+			    		<input type="checkbox" name="remember_me" checked="checked">
+			    		<span>Recordar mis datos</span>
+			    	</label>
+			    	<span class="separador">·</span>
+			    	<a href="#">¿Olvidaste tu contraseña?</a>
+			    </div>
+			</form>
+			<form ng-controller="registroController">
+			   	<h2>
+			   		<strong>¿Eres nuevo en twitter?</strong> Registrate
+			   	</h2>
+			   	<div id="conUserName">
+			   		<input type="text" name="userName" class="form-control" placeholder="Nombre de usuario" ng-model="userName"/>
+			   	</div>
+			    <input type="text" name="name" class="form-control" placeholder="Nombre completo" ng-model="name"/>
+			    <div id="conEmail">
+			    	<input type="email" name="email" class="form-control" placeholder="correo electronico" ng-model="email"/>
+			    </div>
+				<input type="password" name="password" class="form-control" placeholder="Contraseña" ng-model="password"/>
+				<button type="submit" class="span6 form-control width-50 inline-block"  ng-click="registro()">Registrarse en Twitter</button>
+			</form>
+		</div>
+		<div id="tweetsSlider" ng-controller="TweetsSlider">
+			<p><a href="#">[[tweet.body]]</a></p>
+			<h2><a href="#">tweet y foto de [[tweet.userId]]</a></h2>
+			<span><a href="#">[[tweet.title]]</a></span>
+		</div>
+	</div>
+	<footer>
+		<ul>
+			<li><a href="#">Sobre nosotros</a></li>
+			<li><a href="#">Ayuda</a></li>
+			<li><a href="#">Blog</a></li>
+			<li><a href="#">Estado</a></li>
+			<li><a href="#">Empleos</a></li>
+			<li><a href="#">Condiciones</a></li>
+			<li><a href="#">Privacidad</a></li>
+			<li><a href="#">Cookies</a></li>
+			<li><a href="#">Información sobre anuncios</a></li>
+			<li><a href="#">Marca</a></li>
+			<li><a href="#">Anunciarse</a></li>
+			<li><a href="#">Empresas</a></li>
+			<li><a href="#">Medios</a></li>
+			<li><a href="#">Desarrolladores</a></li>
+			<li><a href="#">Directorio </a></li>
+			<li>© 2015 Twitter</li>
+		</ul>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/usuarios.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script>
+        var app = angular.module('app',[])
+        app.controller('a',function($scope,$http){
+           $scope.hola = function(){
+                nombre = $("#nombre").val()
+                nick = $("#nick").val()
+                email = $("#email").val()
+                pass = $("#pass").val()
+                data = {"name":nombre,"userName":nick,"email":email,"password":pass};
+             $http.post("http://localhost:8000/usuarios/crear",data).success(function(msg){
+                alert(msg)
+                location.reload()
+             })  
+           } 
+        })
+    </script>
+</head>
+<body ng-app="app">
+{{login}}
+        <section id="crearUser" ng-controller="a">
+            Nombre: <input type="text" id="nombre">
+            Nick:<input type="text" id="nick" >
+            pass:<input type="text" id="pass" >
+            email:<input type="email" id="email" >
+            <input type="button" id="enviar" value="enviar" ng-click="hola()">
+        </section>
+        <section id="usuarios">
+           {% for usuario in usuarios %}
+              {{usuario}}
+               <div class="user">
+                   <img class="portada" src="{% static 'app/media/' %}{{usuario.imagenPortada}}" alt="">
+                   Cambiar : <input type="file" name="img" id="imgPerfil">
+                   <br>
+                   <img class="perfil" src="{% static 'app/media/' %}{{usuario.imagenPerfil}}">
+                   <br>
+                   Cambiar : <input type="file" name="img" id="imgPerfil">
+                   <p>
+                       Nombre : {{usuario.name}} {{usuario.apellido}}
+                        <br>
+                        Nick : {{usuario.userName}}
+                        <br>
+                        Password: {{usuario.password}}
+                        <br>
+                        Reseña : {{usuario.resena}}
+                        <br>
+                        ID: {{usuario.i_d}}
+                        <br>
+                        #Seguidores : {{usuario.numeroSeguidores}}
+                        <br>
+                        #Siguiendo : {{usuario.numeroSiguiendo}}
+                   </p>
+               </div>
+           {% endfor %}
+            
+        </section>
+        
+        
+<script>
+       /* nombre = $("#nombre").val()
+        apellido = $("#apellido").val()
+        nick = $("#nick").val()
+        email = $("#email").val()
+        pass = $("#pass").val()
+        $("#enviar").click(function(){
+            $.ajax({
+                method:"POST",
+                url:"http://localhost:8000/usuarios/crear",
+                data:{"nombre":nombre,"apellido":apellido,"email":email,"pass":pass,"nick":nick}
+            }).done(function(msg){
+                alert(msg)
+                location.reload()
+            })
+
+        })   */
+</script>
+</body>
+</html>

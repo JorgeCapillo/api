@@ -9,6 +9,6 @@ app.controller('loginController',function($scope,$http){
             }else{
                 alert(msg);
             }
-        })
+        });
     }
 })
